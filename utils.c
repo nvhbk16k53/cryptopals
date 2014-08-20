@@ -3,7 +3,7 @@
 #include <string.h>
 #include "utils.h"
 
-char _hex(char c)
+char hex_decode(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (c - '0');
@@ -15,40 +15,40 @@ char _hex(char c)
 		return -1;
 }
 
-char *hex_encode(unsigned char *bytes)
+char hex_encode(unsigned char byte)
 {
+	byte &= 0x0F;
+
+	return (byte < 10) ? ('0' + byte) : ('A' + byte - 10);
 }
 
-unsigned char *hex_decode(char *hex_str)
+char base64_encode(unsigned char byte)
 {
-	int i, j, len;
-	unsigned char *res;
-
-	len = strlen(hex_str);
-	res = (unsigned char )malloc((len + 1) / 2);
-
-	for (i = 0, j = 0; i < len; i++) {
-		char tmp;
-		tmp = _hex(hex_str[i]);
-		if (tmp < 0)
-			return NULL;
-		if (i % 2 == 1) {
-			res[j] = (res[j] << 4) | tmp;
-			j++;
-		} else {
-			res[j] = tmp;
-		}
-	}
-
-	return res;
+	byte &= 0x3F;
+	if (byte < 26)
+		return byte + 'A';
+	else if (byte < 52)
+		return byte - 26 + 'a';
+	else if (byte < 62)
+		return byte - 52 + '0';
+	else if (byte == 62)
+		return '+';
+	else
+		return '/';
 }
 
-char *base64_encode(unsigned char *bytes)
+char base64_decode(char c)
 {
-	int i, j;
-	char *res;
-}
-
-unsigned char *base64_decode(char *b64_str)
-{
+	if (c >= 'A' && c <= 'Z')
+		return c - 'A';
+	else if (c >= 'a' && c <= 'z')
+		return c - 'a' + 26;
+	else if (c >= '0' && c <= '9')
+		return c - '0' + 52;
+	else if (c == '+')
+		return 62;
+	else if (c == '/')
+		return 63;
+	else
+		return -1;
 }
