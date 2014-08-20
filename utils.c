@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <assert.h>
-#include <string.h>
 #include "utils.h"
 
 char hex_decode(char c)
