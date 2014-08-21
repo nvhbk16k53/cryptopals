@@ -1,3 +1,4 @@
+#include <assert.h>
 #include "utils.h"
 
 char hex_decode(char c)
@@ -9,7 +10,7 @@ char hex_decode(char c)
 	else if (c >= 'a' && c <= 'f')
 		return (c - 'a' + 10);
 	else
-		return -1;
+		assert(0);
 }
 
 char hex_encode(unsigned char byte)
@@ -47,5 +48,5 @@ char base64_decode(char c)
 	else if (c == '/')
 		return 63;
 	else
-		return -1;
+		assert(0);
 }

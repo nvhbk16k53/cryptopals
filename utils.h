@@ -8,8 +8,7 @@ char hex_encode(unsigned char byte);
 
 /* Hex Decoder
  *
- * Return a hex value from a hex digit character
- * Return -1 when error */
+ * Return a hex value from a hex digit character */
 char hex_decode(char c);
 
 /* Base64 Encoder
@@ -19,8 +18,7 @@ char base64_encode(unsigned char byte);
 
 /* Base64 Decoder
  *
- * Return a decoded value from a base64 character
- * Return -1 when error */
+ * Return a decoded value from a base64 character */
 char base64_decode(char c);
 
 #endif
