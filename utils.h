@@ -21,4 +21,10 @@ char base64_encode(unsigned char byte);
  * Return a decoded value from a base64 character */
 char base64_decode(char c);
 
+/* Convert hex string to base64 string */
+char *hex2base64(char *hex);
+
+/* XOR to equal lenght hex string */
+char *XOR(char *hex1, char *hex2);
+
 #endif
