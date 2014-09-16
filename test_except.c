@@ -10,6 +10,7 @@ void test_raise()
 	EXCEPT(exception)
 		assert(1);
 	END_TRY;
+	assert(0);
 }
 
 void test_else()
@@ -41,6 +42,9 @@ int main(int argc, char **argv)
 	test_raise();
 	test_else();
 	test_multi_exception();
+
+	/* Raise Assertion Failed */
+	assert(0);
 
 	return 0;
 }
