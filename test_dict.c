@@ -17,6 +17,8 @@ void test_dict()
 
 	while (fgets(str, sizeof(str), fp) != NULL)
 		assert(Dict_validate_word(str));
+
+	assert(Dict_validate_word("invalid_word") == 0);
 }
 
 int main(int argc, char **argv)
