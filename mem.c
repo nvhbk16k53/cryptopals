@@ -27,7 +27,7 @@ void *Mem_alloc(long nbytes, const char *file, int line)
 
 void *Mem_calloc(long count, long nbytes, const char *file, int line)
 {
-	void ptr;
+	void *ptr;
 
 	assert(count > 0);
 	assert(nbytes > 0);

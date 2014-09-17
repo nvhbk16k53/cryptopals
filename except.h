@@ -14,7 +14,7 @@ struct Except_Frame {
 	const char *file;
 	int line;
 	const T *exception;
-}
+};
 
 enum {  Except_entered=0, Except_raised,
 	Except_handled,   Except_finalized };

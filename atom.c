@@ -83,7 +83,7 @@ const char *Atom_int(long n)
 	if (n < 0)
 		*--s = '-';
 
-	return Atom_new(s, (str - sizeof(str)) - s);
+	return Atom_new(s, (str + sizeof(str)) - s);
 }
 
 const char *Atom_new(const char *str, int len)
@@ -127,5 +127,26 @@ int Atom_length(const char *str)
 			if (p->str == str)
 				return p->len;
 	assert(0);
+	return 0;
+}
+
+int Atom_contain(const char *str, int len)
+{
+	unsigned long h;
+	int i;
+	struct atom *p;
+
+	assert(str);
+	assert(len >= 0);
+	for (h = 0, i = 0; i < len; i++)
+		h = (h<<1) + scatter[(unsigned char)str[i]];
+	h %= NELEMS(buckets);
+	for (p = buckets[h]; p; p = p->link)
+		if (len == p->len) {
+			for (i = 0; i < len && p->str[i] == str[i]; )
+				i++;
+			if (i == len)
+				return 1;
+		}
 	return 0;
 }
